@@ -106,12 +106,14 @@ impl TaskList {
     }
 
     pub fn print_list(&self){ // mostly used to trouble shoot TaskList within RUST only
+        println!("BEGIN"); // So python knows where to begin when capturing output
         let mut current = self.head.as_ref();
 
         while let Some(node) = current {
             println!("Task: {}\nTime: {:.2}\n", node.task, node.time);
             current = node.next.as_ref();
         }
+        println!("END"); // So python knows where to end
     }
 
     pub fn is_empty(&self) -> bool {

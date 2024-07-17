@@ -3,28 +3,57 @@ import os
 
 ffi = FFI()
 
-# Load the Rust shared library
-current_dir = os.path.dirname(os.path.abspath(__file__))
-library_path = ffi.dlopen(current_dir, '..', 'target', 'release', 'to_do_list.dll')
-# the above is done to ensure that the correct path is dynamically provided regardless of device.
-# else I could have just done 'target/release/to_do_list.dll', but that maybe problematic...idk
+# Load the Rust release file
+library_path = 'target/release/to_do_list.dll'
+
 
 lib = ffi.dlopen(library_path)
 
 # establish the RUST functions
 ffi.cdef("""
-typdef struct {
-    const char* task;
-    float time;
-} TaskResult;
-
-TaskResult creat_task_result(const char* task, float time);
-
 int insert_list(const char* task, float time);
 int remove_list(const char* task);
-TaskResult view_task(cont char* task);
+int find_task(const char* task);
 void clear_list();
+void print_task_list();
 """)
 
 
+def insert_task(task, time):
+    return lib.insert_list(task.encode('utf-8'), time)
 
+
+def remove_task(task):
+    if lib.remove_list(task.encode('utf-8')) == 0:
+        return False
+    return True
+
+
+def find_task(task):
+    if lib.find_task(task.encode('utf-8')) == 0:
+        return False
+    return True
+
+
+def print_task_list():
+    lib.print_task_list()
+
+# Just testing to see if it works
+insert_task("A", 1.00)
+insert_task("B", 2.00)
+insert_task("C", 3.00)
+insert_task("E", 5.00)
+
+print_task_list()
+
+insert_task("D", 4.00)
+
+print_task_list()
+
+remove_task("C")
+remove_task("B")
+
+print_task_list()
+
+print("Finding E (True): ", find_task("E"))
+print("Finding B (False): ", find_task("B"))

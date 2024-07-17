@@ -1,7 +1,7 @@
 use crate::task_list::TaskList;
 use std::sync::Mutex;
 use lazy_static::lazy_static;
-use std::ffi::{CString, CStr, c_int};
+use std::ffi::{CStr, c_int};
 use std::os::raw::c_char;
 
 pub mod task;
@@ -31,6 +31,7 @@ pub extern "C" fn insert_list(task: *const c_char, time: f32) -> c_int { // type
     return 1; // true
 }
 
+#[no_mangle]
 pub extern "C" fn remove_list(task: *const c_char) -> c_int { // type bool essentially
     // use crate::task_list;
     let task = unsafe {
@@ -51,12 +52,6 @@ pub extern "C" fn remove_list(task: *const c_char) -> c_int { // type bool essen
     }
     return 0;
 }
-
-#[repr(C)]
-pub struct TaskResult {
-    task: *const c_char,
-    time: f32,
-} // may need to establish a create_TaskResult type of function, but I'm not sure yet
 
 #[no_mangle]
 pub extern "C" fn find_task(task: *const c_char) -> c_int {
