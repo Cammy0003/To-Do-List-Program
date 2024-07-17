@@ -1,5 +1,5 @@
 # To Do List
-2024-07-16
+2024-07
 
 This was a personal **To Do List** project that has a **RUST Backend** and a **Python Frontend**.
 
