@@ -1,5 +1,5 @@
 from cffi import FFI
-import os
+# import os
 
 ffi = FFI()
 
@@ -19,25 +19,29 @@ void print_task_list();
 """)
 
 
-def insert_task(task, time):
+def insert_task(task, time):  # string, f32 -> void
     return lib.insert_list(task.encode('utf-8'), time)
 
 
-def remove_task(task):
+def remove_task(task):  # string -> bool
     if lib.remove_list(task.encode('utf-8')) == 0:
         return False
     return True
 
 
-def find_task(task):
+def find_task(task):  # string -> bool
     if lib.find_task(task.encode('utf-8')) == 0:
         return False
     return True
 
 
-def print_task_list():
+def print_task_list():  # -> void
     lib.print_task_list()
 
+
+print_task_list()
+
+'''
 # Just testing to see if it works
 insert_task("A", 1.00)
 insert_task("B", 2.00)
@@ -57,3 +61,4 @@ print_task_list()
 
 print("Finding E (True): ", find_task("E"))
 print("Finding B (False): ", find_task("B"))
+'''
