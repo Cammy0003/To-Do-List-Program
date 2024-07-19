@@ -25,7 +25,17 @@ I could return `C` `types` instead of `Rust` `types`. Luckily I have experience 
 for me to implement.
 
 ##### NOTE: what is written below has yet to be implemented (it's the plan)...
-Eventually, **Python** is to be used to handle **user interaction** through `Tkinter`, a Python `GUI`. This repository
+Eventually, **Python** is to be used to handle **user interaction** through `tkinter`, a Python `GUI`. This repository
 will be updated soon once that has been completed. 
+
+### Current Updates: (2024-07-16)
+I have established a user interface with `tkinter`. Currently, the insert functions correctly work with the UI
+
+### How to Run
+Within the project directory type the following:
+```commandline
+python python/ui.py
+```
+
 
 
