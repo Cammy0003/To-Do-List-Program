@@ -31,7 +31,8 @@ will be updated soon once that has been completed.
 
 ### Current Updates: (2024-07-17)
 I have established a user interface with `tkinter`. Currently, the insert and removal functions correctly work with the 
-UI from how much I've tested.
+UI from how much I've tested. I have set up a `print_task_list()` in my interface.py, which I'm not sure works yet,
+but we'll see. Almost done with this project trust me.
 
 ### How to Run
 Within the project directory, type the following into the terminal:
