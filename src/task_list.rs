@@ -112,9 +112,9 @@ impl TaskList {
         let mut current = self.head.as_ref();
 
         while let Some(node) = current {
-            s.push_str("Task: ");
+            s.push_str(" Task: ");
             s.push_str(&node.task);
-            s.push_str("Time: ");
+            s.push_str(" Time: ");
             s.push_str(&format!("{:.2}", node.time));
             // println!("Task: {}\nTime: {:.2}\n", node.task, node.time);
             current = node.next.as_ref();

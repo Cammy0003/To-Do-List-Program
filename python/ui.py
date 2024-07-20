@@ -42,7 +42,7 @@ def process_insert_task(task, time):
 
         # call to interface
         inter.insert_task(task, float(time))
-        inter.print_task_list()  # just a check to see if it works (delete later)
+        print_menu()
 
         # clear the entries
         insert_menu.task.delete(0, tk.END)
@@ -73,13 +73,39 @@ def process_remove_task(task):
             text = tk.Label(root, text=to_print)
             text.grid(row=6, column=5, padx=5, pady=5)
 
-            inter.print_task_list()
-
             # clear the entries
             remove_menu.task.delete(0, tk.END)
+            print_menu()
     else:
         text = tk.Label(root, text="Invalid Entry: (Task has no characters)")
         text.grid(row=6, column=5, padx=5, pady=5)
+
+
+def print_menu():
+    # task to be removed
+    clear_widget(11, 5)
+    print_menu.task_label = tk.Label(root, text="Current List:", bg="yellow")
+    print_menu.task_label.grid(row=11, column=1, padx=0, pady=5)
+    process_print_task()
+
+
+def process_print_task() -> None:
+    clear_widget(12, 5)
+    tuple_tasks = inter.print_task_list()
+
+    count = 0
+    column = 2
+    rows = 12
+    for task, time in tuple_tasks:
+        to_print = f"[ ({count}) Task: {task}, Time: {time} ]"
+        label = tk.Label(root, text=to_print)
+        label.grid(row=rows, column=column+1, padx=5, pady=5)
+        if column + 1 == 5:
+            column = 2
+            rows += 1
+        else:
+            column += 1
+        count += 1
 
 
 def main_menu():
@@ -102,21 +128,14 @@ def main_menu():
     )
     remove_button.grid(row=6, column=0, rowspan=5, padx=10, pady=10)
 
-    find_button = tk.Button(
-        text="Find Task",
-        width=30,
-        height=5,
-        bg="white"
-    )
-    find_button.grid(row=11, column=0, rowspan=5, padx=10, pady=10)
-
     print_button = tk.Button(
         text="Print List",
         width=30,
         height=5,
-        bg="white"
+        bg="white",
+        command=print_menu
     )
-    print_button.grid(row=16, column=0, rowspan=5, padx=10, pady=10)
+    print_button.grid(row=11, column=0, rowspan=5, padx=10, pady=10)
 
     exit_button = tk.Button(
         text="Exit",

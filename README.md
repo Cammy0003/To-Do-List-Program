@@ -7,7 +7,7 @@ This was a personal **To Do List** project that has a **RUST Backend** and a **P
 To create a **to-do list** in which users can create a list of tasks to complete, and **set a 
 time** to complete them. 
 
-### Progress:
+### Progression:
 The tasks where established as a nodes in a linked list, where each Task Node, contained a task and time
 parameter, as well as a **next** parameter for the next node in the list. **RUST** was used for
 implementing and handling these linked lists, as it should allow for a faster program overall, and it
@@ -25,14 +25,19 @@ communicate to. This implied that the `Rust` functions needed to be established 
 I could return `C` `types` instead of `Rust` `types` for the functions in "lib.rs". Luckily I have experience in `C`, so that was not too tricky 
 for me to implement.
 
-##### NOTE: what is written below has yet to be implemented (it's the plan)...
-Eventually, **Python** is to be used to handle **user interaction** through `tkinter`, a Python `GUI`. This repository
-will be updated soon once that has been completed. 
+Finally, `Python` utilizes these `C` functions through a user interface. If you run `python python/ui.py`, you will find
+a working To Do List application. Granted it does look pretty ugly, but it's my first time playing with `tkinter` so cut
+me a break would ya. Anyway, the hardest part in all of that was printing the list. Printing the list, required that 
+I design Rust's `print_list()` function, to return a long string that alternates between a "Task:" and "Time:" substring,
+preceding the corresponding task and time substring. This was done to allow python to process the string more easily and to
+determine the actual tasks and times, to then print in the ui. interface.py did the processing of that, and returned a tuple 
+(task, time), that the ui.py `process_print_task()` function would deal with.
 
-### Current Updates: (2024-07-17)
-I have established a user interface with `tkinter`. Currently, the insert and removal functions correctly work with the 
-UI from how much I've tested. I have set up a `print_task_list()` in my interface.py, which I'm not sure works yet,
-but we'll see. Almost done with this project trust me.
+Anyway, all done now!! I have not done any rigorous testing, so there may be some bugs unknown, but currently, everything
+seems fine.
+
+### Completed: (2024-07-17)
+I have established a user interface with `tkinter`. Currently, everything seems to work correctly.
 
 ### How to Run
 Within the project directory, type the following into the terminal:
