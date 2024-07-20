@@ -41,7 +41,7 @@ def print_task_list():  # -> void
 
 # print_task_list()
 
-
+'''
 # Just testing to see if it works
 insert_task("A", 1.00)
 insert_task("B", 2.00)
@@ -72,3 +72,4 @@ print_task_list()
 
 # print("Finding E (True): ", find_task("E"))
 # print("Finding B (False): ", find_task("B"))
+'''
