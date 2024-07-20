@@ -106,15 +106,24 @@ impl TaskList {
         return -1.0; // never found the specified task
     }
 
-    pub fn print_list(&self){ // mostly used to trouble shoot TaskList within RUST only
+    pub fn print_list(&self) -> String { // mostly used to trouble shoot TaskList within RUST only
+        let mut s = String::new();
         println!("BEGIN"); // So python knows where to begin when capturing output
         let mut current = self.head.as_ref();
 
         while let Some(node) = current {
-            println!("Task: {}\nTime: {:.2}\n", node.task, node.time);
+            s.push_str("Task: ");
+            s.push_str(&node.task);
+            s.push_str("Time: ");
+            s.push_str(&format!("{:.2}", node.time));
+            // println!("Task: {}\nTime: {:.2}\n", node.task, node.time);
             current = node.next.as_ref();
         }
-        println!("END"); // So python knows where to end
+
+        // s.push_str("\nEND"); // Don't think I need to push END cause python can determine when there is nothing left in a string itself
+
+        return s;
+        // println!("END"); // So python knows where to end
     }
 
     pub fn is_empty(&self) -> bool {

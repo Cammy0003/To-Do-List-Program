@@ -1,8 +1,9 @@
 use crate::task_list::TaskList;
 use std::sync::Mutex;
 use lazy_static::lazy_static;
-use std::ffi::{CStr, c_int};
+use std::ffi::{CString, CStr, c_int};
 use std::os::raw::c_char;
+use std::ptr;
 
 pub mod task;
 pub mod task_list;
@@ -87,9 +88,26 @@ pub extern "C" fn clear_list() {
 }
 
 #[no_mangle]
-pub extern "C" fn print_task_list() {
+pub extern "C" fn print_task_list() -> *const c_char {
     let list = TASK_LIST.lock().unwrap();
-    list.print_list();
+    let printed = list.print_list();
+
+    let c_printed = match CString::new(printed) {
+        Ok(c_printed) => c_printed,
+        Err(_) => return ptr::null(),
+    };
+
+    return c_printed.into_raw() // Rust loses ownership and burrowing rules over this string, it will be freed by free_string(s)
+}
+
+#[no_mangle]
+pub extern "C" fn free_c_string(s: *const c_char) {
+    if s.is_null() {
+        return;
+    }
+    unsafe {
+        let x = CString::from_raw(s as *mut c_char); // Rust's ownership takes back c_string s.
+    }
 }
 
 
