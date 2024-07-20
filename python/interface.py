@@ -39,26 +39,36 @@ def print_task_list():  # -> void
     lib.print_task_list()
 
 
-print_task_list()
+# print_task_list()
 
-'''
+
 # Just testing to see if it works
 insert_task("A", 1.00)
 insert_task("B", 2.00)
 insert_task("C", 3.00)
-insert_task("E", 5.00)
+insert_task("D", 5.00)
+
+# print_task_list()
+
+# insert_task("D", 4.00)
 
 print_task_list()
 
-insert_task("D", 4.00)
+print(remove_task("A"), " for A")  # should be true
+print_task_list()
+
+print(remove_task("C"), " for C")  # should be true
+print_task_list()
+
+print(remove_task("B"), " for B")  # should be true
 
 print_task_list()
 
-remove_task("C")
-remove_task("B")
-
+print(remove_task("A"), " for A")  # should be false
 print_task_list()
 
-print("Finding E (True): ", find_task("E"))
-print("Finding B (False): ", find_task("B"))
-'''
+print(remove_task("D"), " for D")  # should be true
+print_task_list()
+
+# print("Finding E (True): ", find_task("E"))
+# print("Finding B (False): ", find_task("B"))

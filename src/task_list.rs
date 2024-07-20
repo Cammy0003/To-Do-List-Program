@@ -35,7 +35,8 @@ impl TaskList {
     pub fn remove(&mut self, task: String) -> bool {
         if let Some(node) = self.head.as_mut() { // check head node
             if node.task == task {
-                self.head = node.next.take(); // take what proceeds (next) head, and give it to head
+                self.head = node.next.take(); // take what proceeds (next) head, and give it to
+                return true;
             }
         }
 

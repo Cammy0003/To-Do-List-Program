@@ -42,7 +42,7 @@ def process_insert_task(task, time):
 
         # call to interface
         inter.insert_task(task, float(time))
-        inter.print_task_list()
+        inter.print_task_list()  # just a check to see if it works (delete later)
 
         # clear the entries
         insert_menu.task.delete(0, tk.END)
@@ -50,6 +50,36 @@ def process_insert_task(task, time):
     else:
         text = tk.Label(root, text="Invalid Entry: (Insert Time as integer, no decimals) or (Task has no characters)")
         text.grid(row=1, column=5, padx=5, pady=5)
+
+
+def remove_menu():
+    if not hasattr(remove_menu, 'submit_button'):
+        # task to be removed
+        remove_menu.task_label = tk.Label(root, text="Task Name:")
+        remove_menu.task_label.grid(row=6, column=1, padx=0, pady=5)
+
+        remove_menu.task = tk.Entry(root)
+        remove_menu.task.grid(row=6, column=2, padx=5, pady=5)
+
+        remove_menu.submit_button = tk.Button(root, text="Submit", command=lambda: process_remove_task(remove_menu.task.get()))
+        remove_menu.submit_button.grid(row=6, column=3, padx=0, pady=5)
+
+
+def process_remove_task(task):
+    if not task.isdigit():
+        if inter.remove_task(task) is True:
+            clear_widget(6, 5)
+            to_print = "Success: " + task + " has been removed"
+            text = tk.Label(root, text=to_print)
+            text.grid(row=6, column=5, padx=5, pady=5)
+
+            inter.print_task_list()
+
+            # clear the entries
+            remove_menu.task.delete(0, tk.END)
+    else:
+        text = tk.Label(root, text="Invalid Entry: (Task has no characters)")
+        text.grid(row=6, column=5, padx=5, pady=5)
 
 
 def main_menu():
@@ -67,7 +97,8 @@ def main_menu():
         text="Remove Task",
         width=30,
         height=5,
-        bg="white"
+        bg="white",
+        command=remove_menu
     )
     remove_button.grid(row=6, column=0, rowspan=5, padx=10, pady=10)
 
