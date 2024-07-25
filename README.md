@@ -7,6 +7,10 @@ This was a personal **To Do List** project that has a **RUST Backend** and a **P
 To create a **to-do list** in which users can create a list of tasks to complete, and **set a 
 time** to complete them. 
 
+This app is to be very primitive and not very competitive to any real to do list application that's out there, but the main
+purpose of this program was to gain a better understanding of Rust, as well as understand interops between languages. Also
+practicing the `tkinter` library GUI in Python, was another interest.
+
 ### Progression:
 The tasks where established as a nodes in a linked list, where each Task Node, contained a task and time
 parameter, as well as a **next** parameter for the next node in the list. **RUST** was used for
@@ -37,7 +41,8 @@ Anyway, all done now!! I have not done any rigorous testing, so there may be som
 seems fine.
 
 ### Completed: (2024-07-17)
-I have established a user interface with `tkinter`. Currently, everything seems to work correctly.
+I have established a user interface with `tkinter`. Currently, everything seems to work correctly. 
+ 
 
 ### How to Run
 Within the project directory, type the following into the terminal:
