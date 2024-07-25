@@ -42,6 +42,8 @@ seems fine.
 
 ### Completed: (2024-07-17)
 I have established a user interface with `tkinter`. Currently, everything seems to work correctly. 
+
+Feel free to use any of this code in your own projects.
  
 
 ### How to Run
