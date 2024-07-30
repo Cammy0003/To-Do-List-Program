@@ -4,7 +4,7 @@ from tkinter import font
 
 root = tk.Tk()
 root.title("To Do List")
-root.geometry('1080x720')
+root.geometry('1120x720')
 
 
 def clear_widget(row, column):
@@ -22,7 +22,7 @@ def insert_menu():
         insert_menu.task.grid(row=1, column=2, padx=5, pady=5)
 
         # Time Input
-        insert_menu.time_label = tk.Label(root, text="Time:")
+        insert_menu.time_label = tk.Label(root, text="Priority:")
         insert_menu.time_label.grid(row=2, column=1, padx=0, pady=5)
 
         insert_menu.time = tk.Entry(root)
@@ -48,7 +48,7 @@ def process_insert_task(task, time):
         insert_menu.task.delete(0, tk.END)
         insert_menu.time.delete(0, tk.END)
     else:
-        text = tk.Label(root, text="Invalid Entry: (Insert Time as integer, no decimals) or (Task has no characters)")
+        text = tk.Label(root, text="Invalid Entry: (Insert Priority as integer, no decimals) or (Task has no characters)")
         text.grid(row=1, column=5, padx=5, pady=5)
 
 
@@ -97,7 +97,7 @@ def process_print_task() -> None:
     column = 2
     rows = 12
     for task, time in tuple_tasks:
-        to_print = f"[ ({count}) Task: {task}, Time: {time} ]"
+        to_print = f"[ ({count}) Task: {task}, Priority: {time} ]"
         label = tk.Label(root, text=to_print)
         label.grid(row=rows, column=column+1, padx=5, pady=5)
         if column + 1 == 5:
